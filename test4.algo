@@ -1,0 +1,44 @@
+PROCEDURE Echange(Var A,B:entier)
+Aux:=A; 
+A:=B ;
+B:= Aux ;
+Fin Echange ;
+________________________________
+
+Initialement le tableau est constitué d’un seul élément [T[1]] est considéré comme déjà trié.
+Le tri par insertion se fait ensuite en insérant, pour k variant de 2 à n, la valeur de T[k] au 
+tableau [T[1], T[2], ..., T[k-1]] préalablement trié.
+On emploie donc la boucle :
+Pour k de 2 à n Faire ... Fin Pour
+Pour un k donné, on insère la valeur de T[k] en parcourant le tableau [T[1], T[2], ..., T[k]] 
+dans l’ordre décroissant et en échangeant notre valeur avec les éléments tant que ceux-ci sont grands.
+On ne connaît pas à l’avance le nombre d’échanges à effectuer, il peut y en avoir aucun, 
+on emploie donc une boucle Tant Que ... Faire 
+Pour parcourir le tableau dans l’ordre décroissant on utilise un compteur i initialisé à k 
+auquel on retire 1 à chaque passage dans la boucle.
+Enfin on procède aux échanges successifs par l’appel de la procédure Echange (T[i], T[i-1]) 
+Tant Que T[i] < T[i-1] 
+i:=1
+Tant Que (T[i] < T[i-1] ) ET (i > 1) Faire
+Echange (T[i] , T[i-1] )
+i:=i-1
+Fin Tant Que
+On note que la condition d’exécution est double.
+La condition i > 1 a été ajoutée pour permettre de quitter la boucle si le tableau est entièrement parcouru.
+D’où l’algorithme de tri_insertion :
+
+ALGORITHM tri_insertion 
+Var 
+   T : tab ; 
+   n : entier; 
+   k : entier;
+   i : entier;
+Début
+    Pour k de 2 à n Faire 
+        i:= k
+        Tant Que (T[i]<T[i-1]) Et (i>1) Faire 
+            Echange (T[i],t[i-1])
+            i:=i-1
+        Fin Tant Que
+    Fin Pour
+Fin 
